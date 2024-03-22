@@ -1,0 +1,212 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  /* voce coloca a configuracao que deseja sem considerar a do navegador, no caso esta tirando a margem padrao */
+  box-sizing: border-box; /* faz com que a medida do tamanho da caixa para que seja medido atravez da borda */
+}
+
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-houver: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-houver: rgba(255, 255, 255, 0.2);
+  --highlight-color: rgba(0, 0, 0, 0.2);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  /* background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat; /* não repitir imagem */
+  /* background-position: top center;
+  background-size: cover; acompanhar o tamanho do aumento da tela cobrindo espaço visivel */
+  /* atalho de facilidade background: color image repeat position/size */
+
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100%; /* caso erro com altura do funda de tela retirar item  */
+}
+
+
+body * {
+  font-family: "Inter Tight", sans-serif;
+  color: var(--text-color);
+
+}
+
+#container {
+  width: 100%; /* largura */
+  max-width: 588px;
+  margin: 56px auto 0px;
+  /* padding-top: 50px; esse da a altura do topo da pag entre o container da imagem de apresentação */
+  /* height: 712px;altura */
+  /* border: 1px solid red;   borda com cor */
+  /* margin-right: auto;
+  margin-left: auto;
+  ou substitui por margin: auto pois o automatico preenche todos os lados*/
+  /* display: block; força que todos elementos fiquem a baixo da imagem */
+  padding: 0px 24px;
+}
+
+/* profile */
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px; /* altura da linha */
+  margin-top: 8px;
+}
+
+/* switch*/
+
+#switch {
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+
+  animation: slide-back 0.2s;
+}
+
+.light #switch button {
+  animation: slide-in 0.4s forwards;
+  /* retirado do codigo os dois itens pois esta sendo atribuido a movimentação na animation
+   right: 0;
+  left: initial; */
+}
+
+#switch button:hover {
+outline: 8px solid var(--highlight-color);
+
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* links */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center; /* justifica centralizando texto */
+  align-items: center; /* alinha a escrita no meio da altura total do box */
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none; /* retirar linha embaixo da escrita */
+  font-weight: 500;
+
+  /*  transition: background 0.5s; */
+}
+
+/* pseudo-selector hover:  para aplicar estilos em um link quando o mouse passa por cima dele */
+ul li a:hover {
+  background: var(--surface-color-houver);
+  border: 1.5px solid var(--text-color);
+}
+
+/* social links */
+#social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px; /* Projeto original nao tem porem gosto mais */
+  padding: 24px 0;
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 14px;
+}
+
+/* media queries */
+@media (min-width:700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* animation */
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+from {
+  left: 50%;
+}
+to {
+  left: 0;
+}
+}
